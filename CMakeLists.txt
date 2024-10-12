@@ -19,6 +19,9 @@ qt_add_qml_module(appZurui
         Main.qml
 )
 
+add_subdirectory(ui_components)
+add_subdirectory(translation_tools)
+
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
@@ -33,6 +36,8 @@ set_target_properties(appZurui PROPERTIES
 target_link_libraries(appZurui
     PRIVATE
         Qt6::Quick
+        ui_componentsplugin
+        translation_toolsplugin
 )
 
 include(GNUInstallDirs)
