@@ -4,6 +4,7 @@
 <context>
     <name>Main</name>
     <message>
+        <location filename="../../build/Zurui/Main.qml" line="13"/>
         <location filename="../../Main.qml" line="13"/>
         <source>Zurui</source>
         <translation type="unfinished"></translation>
