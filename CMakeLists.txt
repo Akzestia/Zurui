@@ -6,8 +6,9 @@ add_compile_definitions(ZURUI_DEBUG)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Quick)
-qt_standard_project_setup(REQUIRES 6.5)
+find_package(Qt6 6.7 REQUIRED COMPONENTS Quick)
+find_package(Qt6 REQUIRED COMPONENTS LinguistTools)
+qt_standard_project_setup(REQUIRES 6.7)
 
 qt_add_executable(appZurui
     main.cpp
