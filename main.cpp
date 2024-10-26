@@ -5,6 +5,7 @@
 
 Q_IMPORT_QML_PLUGIN(UIComponentsPlugin)
 Q_IMPORT_QML_PLUGIN(TranslationToolsPlugin)
+Q_IMPORT_QML_PLUGIN(ThemeManagerPlugin)
 
 int main(int argc, char *argv[])
 {
