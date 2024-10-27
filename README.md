@@ -110,4 +110,4 @@ Remember, consistent formatting helps maintain code readability and reduces merg
 
 ## Contact
 
-For inquiries or support, please reach out to [Email](akzestia@gmail.com).
+For inquiries or support, please reach out to [Email](mailto:akzestia@gmail.com).
