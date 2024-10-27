@@ -279,4 +279,4 @@
 #define _Check_return_
 #endif
 
-#endif // _SAL_STUB_H
+#endif  // _SAL_STUB_H
