@@ -1,3 +1,6 @@
+#ifndef THEME_MANAGER_H
+#define THEME_MANAGER_H
+
 #include <QObject>
 #include <QQmlEngine>
 
@@ -15,3 +18,5 @@ class ThemeManager : public QObject {
   private:
     QQmlEngine* m_engine;
 };
+
+#endif //THEME_MANAGER_H

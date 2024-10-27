@@ -52,7 +52,7 @@ install(TARGETS appZurui
 )
 
 set(SOURCE_THEMES ${CMAKE_SOURCE_DIR}/ui_themes)
-set(DESTINATION_THEMES ${CMAKE_BINARY_DIR}/ui_themes)
+set(DESTINATION_THEMES ${CMAKE_BINARY_DIR}/themes)
 
 add_custom_command(
     TARGET appZurui POST_BUILD
