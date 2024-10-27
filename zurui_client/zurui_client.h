@@ -1,3 +1,6 @@
+
+#ifndef ZURUI_CLIENT_H
+#define ZURUI_CLIENT_H
 #include <cstdint>
 
 #include "../MsQuic/include/msquic.h"
@@ -5,11 +8,11 @@
 /*
 
     Zurui Client - main classs used by client side for communicating with the
-   server. Note! This class must only send/receive data, all data processing
-   like routing, serialization/ deserialization must be handled separately.
+    server. Note! This class must only send/receive data, all data processing
+    like routing, serialization/ deserialization must be handled separately.
 
     Only 1 instance of client must be created, which must be reused during the
-   application lifetime.
+    application lifetime.
 */
 
 class Zurui_Client {
@@ -46,3 +49,5 @@ class Zurui_Client {
   public:
     Zurui_Client();
 };
+
+#endif  // ZURUI_CLIENT_H
