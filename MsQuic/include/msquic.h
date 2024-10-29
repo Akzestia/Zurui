@@ -1272,20 +1272,23 @@ typedef struct QUIC_CONNECTION_EVENT {
                 ResumptionTicketLength) const uint8_t* ResumptionTicket;
         } RESUMPTION_TICKET_RECEIVED;
         struct {
-            QUIC_CERTIFICATE* Certificate;  // Peer certificate (platform
-                                            // specific). Valid only during
-                                            // QUIC_CONNECTION_EVENT_PEER_CERTIFICATE_RECEIVED
-                                            // callback.
-            uint32_t DeferredErrorFlags;  // Bit flag of errors (only valid with
-                                          // QUIC_CREDENTIAL_FLAG_DEFER_CERTIFICATE_VALIDATION)
-                                          // - Schannel only, zero otherwise.
+            QUIC_CERTIFICATE*
+                Certificate;  // Peer certificate (platform
+                              // specific). Valid only during
+                              // QUIC_CONNECTION_EVENT_PEER_CERTIFICATE_RECEIVED
+                              // callback.
+            uint32_t
+                DeferredErrorFlags;  // Bit flag of errors (only valid with
+                                     // QUIC_CREDENTIAL_FLAG_DEFER_CERTIFICATE_VALIDATION)
+                                     // - Schannel only, zero otherwise.
             QUIC_STATUS
-                DeferredStatus;  // Most severe error status (only valid with
-                                 // QUIC_CREDENTIAL_FLAG_DEFER_CERTIFICATE_VALIDATION)
-            QUIC_CERTIFICATE_CHAIN* Chain;  // Peer certificate chain (platform
-                                            // specific). Valid only during
-                                            // QUIC_CONNECTION_EVENT_PEER_CERTIFICATE_RECEIVED
-                                            // callback.
+            DeferredStatus;  // Most severe error status (only valid with
+                             // QUIC_CREDENTIAL_FLAG_DEFER_CERTIFICATE_VALIDATION)
+            QUIC_CERTIFICATE_CHAIN*
+                Chain;  // Peer certificate chain (platform
+                        // specific). Valid only during
+                        // QUIC_CONNECTION_EVENT_PEER_CERTIFICATE_RECEIVED
+                        // callback.
         } PEER_CERTIFICATE_RECEIVED;
 #ifdef QUIC_API_ENABLE_PREVIEW_FEATURES
         struct {
@@ -1603,9 +1606,9 @@ typedef struct QUIC_API_TABLE {
     QUIC_DATAGRAM_SEND_FN DatagramSend;
 
     QUIC_CONNECTION_COMP_RESUMPTION_FN
-        ConnectionResumptionTicketValidationComplete;  // Available from v2.2
+    ConnectionResumptionTicketValidationComplete;  // Available from v2.2
     QUIC_CONNECTION_COMP_CERT_FN
-        ConnectionCertificateValidationComplete;  // Available from v2.2
+    ConnectionCertificateValidationComplete;  // Available from v2.2
 
 } QUIC_API_TABLE;
 
