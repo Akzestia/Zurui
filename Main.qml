@@ -2,7 +2,6 @@ import QtQuick
 import UIComponents 1.0
 
 Window {
-
     id: mainWindow
 
     maximumWidth: 480
@@ -23,17 +22,13 @@ Window {
     Component {
         id: signInComponent
 
-        SignIn {
-
-        }
+        SignIn {}
     }
 
     Component {
         id: signUpComponent
 
-        SignUp {
-
-        }
+        SignUp {}
     }
 
     Loader {

@@ -1,7 +1,6 @@
+pragma Singleton
 import QtQuick
 import QtQuick.Window
-
-pragma Singleton
 
 /*
  * Singleton configuration object for application-wide UI properties.
@@ -10,7 +9,7 @@ pragma Singleton
  */
 QtObject {
     // Application background color in hexadecimal format (default: dark blue).
-    property string app_bg_color: "#070F2B"
+    property string app_bg_color: "white"
 
     // Application font color in hexadecimal format (default: white).
     property string app_font_color: "#FFFFFF"
