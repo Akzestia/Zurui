@@ -9,6 +9,10 @@ void TranslationManager::changeLanguage(const QString& languageCode) {
                           + ".qm")) {
         qApp->installTranslator(&m_translator);
         m_engine->retranslate();
+
+#ifdef ZURUI_DEBUG
+        qDebug() << "Successfully loaded translation file for" << languageCode;
+#endif
     } else {
         qDebug() << "Failed to load translation file for" << languageCode;
     }
