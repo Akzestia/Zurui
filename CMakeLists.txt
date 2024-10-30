@@ -1,12 +1,14 @@
 cmake_minimum_required(VERSION 3.16)
 
 project(Zurui VERSION 0.1 LANGUAGES CXX)
-add_compile_definitions(ZURUI_DEBUG)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3")
 
-find_package(Qt6 6.7 REQUIRED COMPONENTS Quick)
+option(ZURUI_DEBUG "Zurui Debug Info" OFF)
+
+find_package(Qt6 6.7 REQUIRED COMPONENTS Quick Core)
 find_package(Qt6 REQUIRED COMPONENTS LinguistTools)
 qt_standard_project_setup(REQUIRES 6.7)
 
@@ -20,6 +22,13 @@ qt_add_qml_module(appZurui
     QML_FILES
         Main.qml
 )
+
+if(ZURUI_DEBUG)
+    add_compile_definitions(ZURUI_DEBUG)
+    message(STATUS "ZURUI_DEBUG is ON")
+else()
+    message(STATUS "ZURUI_DEBUG is OFF")
+endif()
 
 add_subdirectory(ui_components)
 add_subdirectory(translation_tools)
