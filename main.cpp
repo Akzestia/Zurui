@@ -19,10 +19,11 @@ int main(int argc, char* argv[]) {
     ThemeManager themeManager(&engine);
     TranslationManager translationManager(&engine);
 
-    themeManager.update("themes/zurui_light/conf.qml");
-
     engine.rootContext()->setContextProperty("themeManager", &themeManager);
-    engine.rootContext()->setContextProperty("translationManager", &translationManager);
+    engine.rootContext()->setContextProperty("translationManager",
+                                             &translationManager);
+
+    themeManager.update("zurui_dark");
 
     QObject::connect(
         &engine, &QQmlApplicationEngine::objectCreationFailed, &app,
