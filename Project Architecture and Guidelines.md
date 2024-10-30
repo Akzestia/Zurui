@@ -12,42 +12,21 @@
 
 ```
 zurui/
-├── CMakeLists.txt
-├── CMakeLists.txt.user
-├── LICENSE_GPL
-├── LICENSE_LGPL
-├── LICENSE_MIT
-├── main.cpp
-├── Main.qml
-├── MsQuic/
-│   ├── bin/
-│   │   ├── libmsquic.lttng.so.2.4.5
-│   │   └── libmsquic.so.2.4.5
-│   └── include/
-│       ├── msquic.h
-│       ├── msquic_posix.h
-│       └── quic_sal_stub.h
-├── Project Architecture and Guidelines.md
-├── README.md
-├── translation_tools/
-│   ├── CMakeLists.txt
-│   ├── translation_manager.cpp
-│   └── translation_manager.h
-├── ui_components/
-│   ├── CMakeLists.txt
-│   ├── Sign_in.qml
-│   └── Sign_up.qml
-├── ui_themes/
+├── CMakeLists.txt                 # Main CMake configuration
+├── main.cpp                       # Application entry point
+├── Main.qml                       # Main QML interface
+├── MsQuic/                        # QUIC protocol implementation
+│   ├── bin/                       # MsQuic binaries
+│   └── include/                   # MsQuic headers
+├── theme_manager/                 # Theme management system
+├── translation_tools/             # Internationalization support
+│   └── translations/              # Translation files
+├── ui_components/                 # Reusable UI components
+├── ui_themes/                     # Theme configurations
 │   ├── zurui_dark/
-│   │   ├── assets/
-│   │   └── conf.qml
 │   └── zurui_light/
-│       ├── assets/
-│       └── conf.qml
-└── zurui_client/
-    ├── CMakeLists.txt
-    ├── zurui_client.cpp
-    └── zurui_client.h
+├── vpn_manager/                   # VPN connection handling
+└── zurui_client/                  # Core client functionality
 ```
 
 ## Component Overview
