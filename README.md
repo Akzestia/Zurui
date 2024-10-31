@@ -1,4 +1,4 @@
-# Zurui 🚀
+# Zurui 🚀 [日本語](README_jap.md)
 
 **Zurui** - an early-stage, high-speed communication platform utilizing a decentralized network for secure data exchange. Using VPN and QUIC, it establishes private, peer-to-peer connections after an initial handshake, enabling scalable, low-latency interactions without relying on central servers.
 
@@ -8,19 +8,19 @@ This repository is in the early stages of development. The primary goal is to cr
 
 ## Features (Planned) 🌟
 
-- **Decentralized Communication** 🌐: Bypass centralized servers for enhanced privacy and security.
-- **Peer-to-Peer Connectivity** 🔗: Fast and direct connections between devices for efficient data transfer.
-- **Portability** 📱: Connect from anywhere with Wi-Fi, making it ideal for on-the-go communication.
-- **Intuitive Interface** 🎨: User-friendly design for easy navigation and interaction.
-- **Secure File Sharing** 🔒: Share files safely with end-to-end encryption.
+-   **Decentralized Communication** 🌐: Bypass centralized servers for enhanced privacy and security.
+-   **Peer-to-Peer Connectivity** 🔗: Fast and direct connections between devices for efficient data transfer.
+-   **Portability** 📱: Connect from anywhere with Wi-Fi, making it ideal for on-the-go communication.
+-   **Intuitive Interface** 🎨: User-friendly design for easy navigation and interaction.
+-   **Secure File Sharing** 🔒: Share files safely with end-to-end encryption.
 
 ## Roadmap 🗺️
 
-- [x] Set up project structure and initialize repository
-- [x] Implement basic peer-to-peer connectivity
-- [ ] Develop user interface for sending and receiving messages
-- [ ] Enable secure file sharing capabilities
-- [ ] Test and refine performance and security features
+-   [x] Set up project structure and initialize repository
+-   [x] Implement basic peer-to-peer connectivity
+-   [ ] Develop user interface for sending and receiving messages
+-   [ ] Enable secure file sharing capabilities
+-   [ ] Test and refine performance and security features
 
 ## Installation 🖥️
 
