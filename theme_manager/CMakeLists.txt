@@ -1,3 +1,5 @@
+set(CMAKE_AUTORCC ON)
+
 qt_add_library(theme_manager STATIC)
 
 qt_add_qml_module(theme_manager
