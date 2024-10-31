@@ -1,6 +1,6 @@
 # Zurui 🚀
 
-[🇺🇸 English](README.md) | [🇯🇵 日本語](README_jap.md)
+[🇺🇸 English](README.md) | [🇯🇵 日本語](README_jap.md) | [🇺🇦 Українська](README_ukr.md)
 
 **Zurui** - an early-stage, high-speed communication platform utilizing a decentralized network for secure data exchange. Using VPN and QUIC, it establishes private, peer-to-peer connections after an initial handshake, enabling scalable, low-latency interactions without relying on central servers.
 
