@@ -20,12 +20,9 @@
 
 ## Coding Standards 📝
 
-### C++
+### C++ 
 - Follow the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html) as a base.
-- Use `snake_case` for variable and function names (similar to Rust).
-- Use `PascalCase` for class names.
-- Use `UPPER_CASE` for constants and macros.
-- Limit line length to **100 characters**.
+- Use the `.clang-format` file provided by the project for consistent formatting.
 - Choose descriptive names for variables and functions.
 
 ### QML
