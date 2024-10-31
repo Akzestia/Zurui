@@ -28,19 +28,16 @@ void ThemeManager::loadThemes() {
     qDebug() << "Executing command: tree themes";
 #endif
 
+#ifdef ZURUI_DEBUG
     QProcess process;
     process.start("tree", QStringList() << "themes");
     process.waitForFinished();
 
     QString output = process.readAllStandardOutput();
     if (!output.isEmpty()) {
-#ifdef ZURUI_DEBUG
         qDebug() << "Directory structure of 'themes':\n" << output;
-#else
-        qDebug()
-            << "No output from 'tree' command or 'tree' command not found.";
-#endif
     }
+#endif
 
     for (const QFileInfo& dirInfo :
          themesDir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot)) {
@@ -64,19 +61,25 @@ QVariantMap ThemeManager::availableThemes() const {
 
 QObject* ThemeManager::createThemeObject(const QString& path) {
     if (!QFile::exists(path)) {
+#ifdef ZURUI_DEBUG
         qWarning() << "Theme file does not exist at path:" << path;
+#endif
         return nullptr;
     }
 
     QQmlComponent component(m_engine, QUrl::fromLocalFile(path));
     if (component.status() != QQmlComponent::Ready) {
+#ifdef ZURUI_DEBUG
         qWarning() << "Failed to load theme:" << component.errorString();
+#endif
         return nullptr;
     }
 
     QObject* themeObject = component.create();
     if (!themeObject) {
+#ifdef ZURUI_DEBUG
         qWarning() << "Failed to instantiate theme object from QML file";
+#endif
     }
     return themeObject;
 }
