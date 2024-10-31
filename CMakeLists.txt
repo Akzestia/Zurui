@@ -8,9 +8,10 @@ set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3")
 
 option(ZURUI_DEBUG "Zurui Debug Info" OFF)
 
-find_package(Qt6 6.7 REQUIRED COMPONENTS Quick Core)
+find_package(Qt6 6.8 REQUIRED COMPONENTS Quick Core)
 find_package(Qt6 REQUIRED COMPONENTS LinguistTools)
-qt_standard_project_setup(REQUIRES 6.7)
+
+qt_standard_project_setup(REQUIRES 6.8)
 
 qt_add_executable(appZurui
     main.cpp
