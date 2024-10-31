@@ -16,8 +16,8 @@ This repository is in the early stages of development. The primary goal is to cr
 
 ## Roadmap 🗺️
 
-- [ ] Set up project structure and initialize repository
-- [ ] Implement basic peer-to-peer connectivity
+- [x] Set up project structure and initialize repository
+- [x] Implement basic peer-to-peer connectivity
 - [ ] Develop user interface for sending and receiving messages
 - [ ] Enable secure file sharing capabilities
 - [ ] Test and refine performance and security features
