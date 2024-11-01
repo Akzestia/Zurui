@@ -16,6 +16,12 @@ int main(int argc, char* argv[]) {
 
     QQmlApplicationEngine engine;
 
+#ifdef ZURUI_DEBUG
+    engine.rootContext()->setContextProperty("zurui_debug", true);
+#else
+    engine.rootContext()->setContextProperty("zurui_debug", false);
+#endif
+
     ThemeManager themeManager(&engine);
     TranslationManager translationManager(&engine);
 
