@@ -6,5 +6,6 @@ CompileFlags:
     - "--include-directory=/usr/include/qt/QtWidgets"
     - "--include-directory=/usr/include/qt/QtQml"
     - "--include-directory=/usr/include/qt/QtQuick"
+    - "--include-directory=/usr/include/qt/QtUiPlugin"
     - "--include-directory=${workspaceFolder}"
     - "--include-directory=${workspaceFolder}/**"
