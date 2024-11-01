@@ -13,6 +13,6 @@ We use Qt's `lupdate` tool to generate translation files for multiple languages.
 Run the following command from the project root:
 ```bash
 lupdate . -recursive -ts \
-    translation_tools/translations/translations_uk.ts \
+    translation_tools/translations/translations_ua.ts \
     translation_tools/translations/translations_ja.ts \
     translation_tools/translations/translations_en.ts
