@@ -4,7 +4,7 @@ set(CMAKE_AUTORCC ON)
 qt_add_library(zurui_dark STATIC)
 
 qt_add_qml_module(zurui_dark
-    URI "Zurui_light"
+    URI "Zurui_dark"
     VERSION 1.0
     QML_FILES
         conf.qml
@@ -12,7 +12,7 @@ qt_add_qml_module(zurui_dark
         /zurui_dark
 )
 
-qt_add_resources(zurui_light "assets"
+qt_add_resources(zurui_dark "assets"
     PREFIX
         /zurui_dark
     FILES
