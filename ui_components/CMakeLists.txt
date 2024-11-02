@@ -1,4 +1,4 @@
-set(CMAKE_AUTORCC ON)
+cmake_minimum_required(VERSION 3.16)
 
 qt_add_library(ui_components STATIC)
 
