@@ -1,5 +1,4 @@
-set(CMAKE_AUTORCC ON)
-
+cmake_minimum_required(VERSION 3.16)
 qt_add_library(theme_manager STATIC)
 
 qt_add_qml_module(theme_manager

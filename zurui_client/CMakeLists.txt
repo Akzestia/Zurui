@@ -1,3 +1,4 @@
+cmake_minimum_required(VERSION 3.16)
 qt_add_library(zurui_client STATIC)
 
 qt_add_qml_module(zurui_client

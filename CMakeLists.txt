@@ -34,6 +34,7 @@ endif()
 add_subdirectory(ui_components)
 add_subdirectory(translation_tools)
 add_subdirectory(theme_manager)
+add_subdirectory(ui_themes/zurui_light)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
@@ -52,6 +53,7 @@ target_link_libraries(appZurui
         ui_componentsplugin
         translation_toolsplugin
         theme_managerplugin
+        zurui_lightplugin
 )
 
 include(GNUInstallDirs)

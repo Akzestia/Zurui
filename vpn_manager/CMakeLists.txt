@@ -1,3 +1,4 @@
+cmake_minimum_required(VERSION 3.16)
 qt_add_library(vpn_manager STATIC)
 
 qt_add_qml_module(vpn_manager
