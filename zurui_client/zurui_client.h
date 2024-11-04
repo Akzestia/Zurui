@@ -47,7 +47,35 @@ class Zurui_Client {
 #pragma endregion
 
   public:
+    /*!
+     * \brief Default constructor.
+     */
     Zurui_Client();
+
+    /*!
+     * \brief Destructor.
+     */
+    ~Zurui_Client() = default;
+
+    /*!
+     * \brief Copy constructor (deleted).
+     */
+    Zurui_Client(const Zurui_Client&) = delete;
+
+    /*!
+     * \brief Copy assignment operator (deleted).
+     */
+    Zurui_Client& operator=(const Zurui_Client&) = delete;
+
+    /*!
+     * \brief Move constructor (deleted).
+     */
+    Zurui_Client(Zurui_Client&&) = delete;
+
+    /*!
+     * \brief Move assignment operator (deleted).
+     */
+    Zurui_Client& operator=(Zurui_Client&&) = delete;
 };
 
 #endif  // ZURUI_CLIENT_H
