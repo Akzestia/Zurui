@@ -10,9 +10,11 @@
  * to identify and connect to the relevant servers for establishing connections.
  */
 enum HandShakeProviders {
-    UA_PROVIDER = 0x01,     ///< Ukraine provider for handshake
-    JAP_PROVIDER = 0x02,    ///< Japan provider for handshake
-    PL_PROVIDER = 0x03,     ///< Poland provider for handshake
+    UA_PROVIDER = 0x01,   ///< Ukraine provider for handshake
+    JAP_PROVIDER = 0x02,  ///< Japan provider for handshake
+    PL_PROVIDER = 0x03,   ///< Poland provider for handshake
+    TW_PROVIDER = 0x04,   ///< Taiwan provider for handshake
+
     UNKNOWN_PROVIDER = 0x0  ///< Unknown provider, used as a default or fallback
 };
 
@@ -26,6 +28,36 @@ enum HandShakeProviders {
  */
 class VpnManager {
   public:
+    /*!
+     * \brief Default constructor.
+     */
+    VpnManager() = default;
+
+    /*!
+     * \brief Destructor.
+     */
+    ~VpnManager() = default;
+
+    /*!
+     * \brief Copy constructor (deleted).
+     */
+    VpnManager(const VpnManager&) = delete;
+
+    /*!
+     * \brief Copy assignment operator (deleted).
+     */
+    VpnManager& operator=(const VpnManager&) = delete;
+
+    /*!
+     * \brief Move constructor (deleted).
+     */
+    VpnManager(VpnManager&&) = delete;
+
+    /*!
+     * \brief Move assignment operator (deleted).
+     */
+    VpnManager& operator=(VpnManager&&) = delete;
+
     /*!
      * \brief Connects to a handshake provider.
      *
