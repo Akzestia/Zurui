@@ -44,7 +44,7 @@ QtObject {
         property bool bg_animated: true
 
         // File path for the background source during sign-up.
-        property string bg_source: "assets/tendou-alice-blue-archive-moewalls-com.mp4"
+        property string bg_source: Qt.resolvedUrl("assets/tendou-alice-blue-archive-moewalls-com.mp4")
     }
 
     /*
@@ -55,7 +55,7 @@ QtObject {
         property bool bg_animated: true
 
         // File path for the background source during sign-in.
-        property string bg_source: "assets/tendou-alice-blue-archive-moewalls-com.mp4"
+        property string bg_source: Qt.resolvedUrl("assets/tendou-alice-blue-archive-moewalls-com.mp4")
     }
 
     /*
@@ -66,7 +66,7 @@ QtObject {
         property bool bg_animated: true
 
         // File path for the background source for the Zurui main screen.
-        property string bg_source: "assets/tendou-alice-blue-archive-moewalls-com.mp4"
+        property string bg_source: Qt.resolvedUrl("assets/tendou-alice-blue-archive-moewalls-com.mp4")
     }
 
     /*
