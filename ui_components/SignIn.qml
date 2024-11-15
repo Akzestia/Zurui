@@ -1,69 +1,133 @@
-import QtQuick
-import QtQuick.Controls
+import QtQuick 6.8
+import QtQuick.Controls 2.5
 import QtMultimedia
-import Qt5Compat.GraphicalEffects
+import QtQuick.Effects
+import QtQuick.Layouts
+import UIcomponents 1.0
 
-Item {
+Page {
     id: signIn
+
+    title: "Sign In"
 
     Video {
         id: video
         height: parent.height
-        source: "qrc:/zurui_light/assets/tendou-alice-blue-archive-moewalls-com.mp4"
+        source: themeManager.currentTheme.sign_in_props.bg_source
 
         anchors.horizontalCenter: parent.horizontalCenter
         autoPlay: true
         loops: MediaPlayer.Infinite
+
+        z: -1
+
+        onSourceChanged: {
+            console.log("source: " + source);
+            console.log("Buffer Size [" + bufferProgress + "]");
+            video.play();
+        }
+
+        onPlaying: {
+            console.log("Buffer Size [" + bufferProgress + "]");
+        }
     }
 
     Rectangle {
-        id: mask
-        width: .1 * themeManager.currentTheme.app_ui_scale_factor
-        height: .1 * themeManager.currentTheme.app_ui_scale_factor
+        id: preloading
+        anchors.fill: parent
+        color: "black"
+        opacity: video.playing ? 0 : 1
+        z: 3
+        Behavior on opacity {
+            NumberAnimation {
+                duration: 10
+            }
+        }
+    }
 
-        color: "#FF000000"
+    TextField {
+        id: xux
+
+        maximumLength: 20
+        width: 300 * themeManager.currentTheme.app_ui_scale_factor
+        height: 30 * themeManager.currentTheme.app_ui_scale_factor
+
+        color: "cyan"
+        placeholderText: "uxu"
+        placeholderTextColor: "white"
+
+        font.pixelSize: 18 * themeManager.currentTheme.app_ui_scale_factor
+
+        leftPadding: 10 * themeManager.currentTheme.app_ui_scale_factor
+
         anchors.centerIn: parent
 
-        Component.onCompleted: {
-            if (zurui_debug)
-                console.log("Scale x" + themeManager.currentTheme.app_ui_scale_factor);
+        Keys.onEscapePressed: {
+            if (xux.focus)
+                xux.focus = false;
+        }
+
+        background: Rectangle {
+            anchors.fill: parent
+            radius: 4 * themeManager.currentTheme.app_ui_scale_factor
+            color: "#272727"
+
+            MouseArea {
+                anchors.fill: parent
+
+                hoverEnabled: true
+            }
         }
     }
 
-    // TextInput {
-    //     id: inputq
-    //     text: "Welcome to zurui"
-    //     color: "white"
-    //     anchors.centerIn: parent
-    //     width: 600
-    //     focus: false
-    //     height: 200
-    //     z: 1
+    Button {
+        text: "change bg"
 
-    //     Keys.onPressed: event => {
-    //         if (event.key == Qt.Key_Escape) {
-    //             inputq.focus = false;
-    //             event.accepted = true;
-    //         }
-    //     }
-    // }
-
-    Shortcut {
-        sequences: ["Ctrl+X"]
-        onActivated: {
-            mask.width = mask.width === 0 ? 10 : 0;
-            mask.height = mask.height === 0 ? 10 : 0;
+        onClicked: {
+            themeManager.update(themeManager.currentTheme.app_props.theme_name == "zurui_light" ? "zurui_dark" : "zurui_light");
+            // console.log(themeManager.currentTheme.sign_up_props.bg_source);
+            // console.log(themeManager.currentTheme.app_props.theme_name);
         }
     }
 
-    MaskedBlur {
+    Button {
+        text: "Back"
+        anchors.horizontalCenter: parent
+        onClicked: {
+            // if (stackView.depth > 1)
+            //     stackView.popCurrentItem();
+            // stackView.push(signUpComponent);
+
+            stackView.replaceCurrentItem(signUpLoader.item);
+            console.log(stackView.depth);
+        }
+    }
+
+    MultiEffect {
         id: blur
-        z: 0
-        anchors.fill: video
         source: video
-        maskSource: mask
-        radius: 16
-        samples: 24
+        anchors.fill: video
+        brightness: 0
+        saturation: 0.1
+        blurEnabled: true
+        blurMax: 64
+        blur: 0
+
+        z: -1
+
+        Behavior on blur {
+            NumberAnimation {
+                duration: 320
+                easing.type: Easing.OutQuart
+            }
+        }
+
+        Behavior on brightness {
+            NumberAnimation {
+                duration: 320
+                easing.type: Easing.OutQuart
+            }
+        }
     }
 
     Connections {
@@ -72,6 +136,16 @@ Item {
         function onCurrentThemeChanged() {
             if (zurui_debug)
                 console.log("Themes have changed, currentTheme:", themeManager.currentTheme);
+            video.source = themeManager.currentTheme.sign_in_props.bg_source;
+        }
+    }
+
+    Connections {
+        target: keyBindingManager
+
+        function onToggleBlur() {
+            blur.blur = blur.blur == 0 ? 0.55 : 0;
+            blur.brightness = blur.brightness == 0 ? -.15 : 0;
         }
     }
 }
