@@ -1,4 +1,5 @@
-
+#ifndef KeyBindingManager_H
+#define KeyBindingManager_H
 
 #include <QDebug>
 #include <QGuiApplication>
@@ -13,6 +14,7 @@
 #include <set>
 #include <vector>
 
+#include "key_binding_worker.h"
 #include "qlist.h"
 #include "qnamespace.h"
 #include "qobject.h"
@@ -66,3 +68,5 @@ class KeyBindingManager : public QObject {
   signals:
     void toggleBlur();
 };
+
+#endif

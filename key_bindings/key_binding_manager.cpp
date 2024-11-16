@@ -1,10 +1,6 @@
 #include "key_binding_manager.h"
 
-#include "key_binding_worker.h"
 #include "qdebug.h"
-#include "qglobal.h"
-#include "qlist.h"
-#include "qnamespace.h"
 #include "qqml.h"
 
 void w1() {
@@ -45,7 +41,7 @@ void KeyBindingManager::checkFocusedElement() {
 void KeyBindingManager::setFocusedItem(QQuickItem* item) {
     if (item) {
         const char* className = item->metaObject()->className();
-        qDebug() << "Focused item type:" << className;
+        // qDebug() << "Focused item type:" << className;
 
         m_canBlur =
             std::none_of(FocusTargets::nonBlurPrefixes.begin(),
@@ -54,9 +50,9 @@ void KeyBindingManager::setFocusedItem(QQuickItem* item) {
                              return std::string(className).find(prefix) == 0;
                          });
 
-        qDebug() << (m_canBlur ? "Blur is enabled." : "Blur is disabled.");
+        // qDebug() << (m_canBlur ? "Blur is enabled." : "Blur is disabled.");
     } else {
-        qDebug() << "No item is currently focused.";
+        // qDebug() << "No item is currently focused.";
         m_canBlur = true;
     }
 }

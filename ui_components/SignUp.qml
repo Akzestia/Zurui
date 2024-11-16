@@ -4,7 +4,7 @@ import QtMultimedia
 import QtQuick.Effects
 import QtQuick.Layouts
 
-Page {
+Item {
     id: signUp
 
     Video {
@@ -19,13 +19,7 @@ Page {
         z: -1
 
         onSourceChanged: {
-            console.log("source: " + source);
-            console.log("Buffer Size [" + bufferProgress + "]");
             video.play();
-        }
-
-        onPlaying: {
-            console.log("Buffer Size [" + bufferProgress + "]");
         }
     }
 
@@ -89,7 +83,7 @@ Page {
 
     Button {
         text: "Back"
-        anchors.horizontalCenter: parent
+        anchors.horizontalCenter: parent.horizontalCenter
         onClicked: {
             stackView.replaceCurrentItem(signInLoader.item);
             console.log(stackView.depth);
