@@ -5,10 +5,8 @@ import QtQuick.Effects
 import QtQuick.Layouts
 import UIcomponents 1.0
 
-Page {
+Item {
     id: signIn
-
-    title: "Sign In"
 
     Video {
         id: video
@@ -22,26 +20,7 @@ Page {
         z: -1
 
         onSourceChanged: {
-            console.log("source: " + source);
-            console.log("Buffer Size [" + bufferProgress + "]");
             video.play();
-        }
-
-        onPlaying: {
-            console.log("Buffer Size [" + bufferProgress + "]");
-        }
-    }
-
-    Rectangle {
-        id: preloading
-        anchors.fill: parent
-        color: "black"
-        opacity: video.playing ? 0 : 1
-        z: 3
-        Behavior on opacity {
-            NumberAnimation {
-                duration: 10
-            }
         }
     }
 
@@ -92,12 +71,13 @@ Page {
 
     Button {
         text: "Back"
-        anchors.horizontalCenter: parent
+        anchors.horizontalCenter: parent.horizontalCenter
         onClicked: {
             // if (stackView.depth > 1)
             //     stackView.popCurrentItem();
             // stackView.push(signUpComponent);
 
+            // stackView.replaceCurrentItem(preloadingManager.getComponent("SignIn"));
             stackView.replaceCurrentItem(signUpLoader.item);
             console.log(stackView.depth);
         }
