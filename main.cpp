@@ -1,12 +1,16 @@
 
+#include <QDir>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QtQml/QQmlExtensionPlugin>
-#include <QDir>
 #include <iostream>
 
 #include "key_bindings/key_binding_manager.h"
+#include "preloading_manager/preloading_manager.h"
+#include "qlogging.h"
+#include "qqmlcomponent.h"
+#include "qurl.h"
 #include "theme_manager/theme_manager.h"
 #include "translation_tools/translation_manager.h"
 
@@ -37,12 +41,11 @@ int main(int argc, char* argv[]) {
     KeyBindingManager keyBindingManager(&engine);
 
     engine.addImportPath("qrc:/ui_components");
-
     app.installEventFilter(&keyBindingManager);
 
-    // const auto importPathList = engine.importPathList();
+    const auto importPathList = engine.importPathList();
     // qDebug() << "QML Import Paths:";
-    // for (const QString &path : importPathList) {
+    // for (const QString& path : importPathList) {
     //     qDebug() << path;
     // }
 #ifdef ZURUI_DEBUG
@@ -53,26 +56,24 @@ int main(int argc, char* argv[]) {
 
     ThemeManager themeManager(&engine);
     TranslationManager translationManager(&engine);
+    PreloadingManager preloadingManager(&engine);
 
     engine.rootContext()->setContextProperty("themeManager", &themeManager);
-    engine.rootContext()->setContextProperty("keyBindingManager", &keyBindingManager);
+    engine.rootContext()->setContextProperty("keyBindingManager",
+                                             &keyBindingManager);
     engine.rootContext()->setContextProperty("translationManager",
                                              &translationManager);
+    engine.rootContext()->setContextProperty("preloadingManager",
+                                             &preloadingManager);
+
+    preloadingManager.preloadComponent("SignIn", QUrl("qrc:/ui_components/UIcomponents/SignUp.qml"));
 
     themeManager.update("zurui_dark");
-
-    QObject* signUpProps = themeManager.currentTheme()
-                               ->property("sign_up_props")
-                               .value<QObject*>();
-    // if (signUpProps) {
-    //     QString bgSource = signUpProps->property("bg_source").toString();
-    //     std::cout << "\n\nTheme asset path -> (" << bgSource.toStdString()
-    //               << ")\n";
-    // }
 
     QObject::connect(
         &engine, &QQmlApplicationEngine::objectCreationFailed, &app,
         []() { QCoreApplication::exit(-1); }, Qt::QueuedConnection);
+
     engine.loadFromModule("Zurui", "Main");
 
     return app.exec();
