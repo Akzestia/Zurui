@@ -4,16 +4,14 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QtQml/QQmlExtensionPlugin>
-#include <iostream>
 
 #include "key_bindings/key_binding_manager.h"
 #include "preloading_manager/preloading_manager.h"
-#include "qlogging.h"
-#include "qqmlcomponent.h"
-#include "qurl.h"
+#include "qqml.h"
+#include "surface_manager/surface.h"
+#include "surface_manager/surface_manager.h"
 #include "theme_manager/theme_manager.h"
 #include "translation_tools/translation_manager.h"
-
 // Q_IMPORT_QML_PLUGIN(UIcomponentsPlugin)
 // Q_IMPORT_QML_PLUGIN(TranslationToolsPlugin)
 // Q_IMPORT_QML_PLUGIN(ThemeManagerPlugin)
@@ -43,7 +41,7 @@ int main(int argc, char* argv[]) {
     engine.addImportPath("qrc:/ui_components");
     app.installEventFilter(&keyBindingManager);
 
-    const auto importPathList = engine.importPathList();
+    // const auto importPathList = engine.importPathList();
     // qDebug() << "QML Import Paths:";
     // for (const QString& path : importPathList) {
     //     qDebug() << path;
@@ -65,9 +63,6 @@ int main(int argc, char* argv[]) {
                                              &translationManager);
     engine.rootContext()->setContextProperty("preloadingManager",
                                              &preloadingManager);
-
-    preloadingManager.preloadComponent("SignIn", QUrl("qrc:/ui_components/UIcomponents/SignUp.qml"));
-
     themeManager.update("zurui_dark");
 
     QObject::connect(
