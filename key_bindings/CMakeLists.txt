@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.31)
+
 qt_add_library(key_binding_manager STATIC)
 
 qt_add_qml_module(key_binding_manager
