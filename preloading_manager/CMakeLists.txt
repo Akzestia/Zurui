@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.31)
+
 qt_add_library(preloading_manager STATIC)
 
 qt_add_qml_module(preloading_manager
