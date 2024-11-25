@@ -82,5 +82,8 @@ zurui.qdocconf
 
 #*.clang*
 
-#MsQuic libs
-!MsQuic/bin/*
+#DockerFile
+Docker*
+
+#Bundle script
+bundle.sh
