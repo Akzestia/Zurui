@@ -14,6 +14,7 @@ qt_add_qml_module(key_binding_manager
 target_link_libraries(key_binding_manager
     PRIVATE
         Qt6::Core
+        Qt6::Widgets
         Qt6::Quick
         Qt6::Gui
         Qt6::Qml
