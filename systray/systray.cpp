@@ -3,13 +3,25 @@
 #include <QWindow>
 
 #include "qicon.h"
+#include "qkeysequence.h"
+#include "qlogging.h"
+#include "qobject.h"
 
 SysTray::SysTray(QGuiApplication* app) {
     trayIcon.setIcon(QIcon("/home/azure/Downloads/Untitled-modified.png"));
     trayIcon.setToolTip("ずるい");
 
-    restoreAction = new QAction("Restore", &trayMenu);
-    quitAction = new QAction("Quit", &trayMenu);
+
+    QString restoreAction_text = QObject::tr("Restore");
+    QString quitAction_text = QObject::tr("Quit");
+
+#ifdef ZURUI_DEBUG
+    qDebug() << "RT: [" << restoreAction_text << "]";
+    qDebug() << "QT: [" << quitAction_text << "]";
+#endif
+
+    restoreAction = new QAction(restoreAction_text, &trayMenu);
+    quitAction = new QAction(quitAction_text, &trayMenu);
 
     trayMenu.addAction(restoreAction);
     trayMenu.addAction(quitAction);
@@ -24,6 +36,16 @@ SysTray::SysTray(QGuiApplication* app) {
 
     QObject::connect(quitAction, &QAction::triggered, &*app,
                      &QCoreApplication::quit);
+
+    QObject::connect(&trayIcon, &QSystemTrayIcon::activated,
+                     [&](QSystemTrayIcon::ActivationReason reason) {
+                         switch (reason) {
+                         case QSystemTrayIcon::Trigger: {
+                         } break;
+                         default:
+                             return;
+                         }
+                     });
 
     trayIcon.show();
 }
