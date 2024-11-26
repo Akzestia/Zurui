@@ -7,7 +7,8 @@
 #include <QQmlComponent>
 #include <QQmlContext>
 
-#include "qglobal.h"
+#include "qdir.h"
+#include "qlogging.h"
 #include "qobject.h"
 #include "qobjectdefs.h"
 
@@ -17,7 +18,7 @@ ThemeManager::ThemeManager(QQmlEngine* engine, QObject* parent)
 }
 
 void ThemeManager::loadThemes() {
-    QDir themesDir("themes");
+    QDir themesDir(QDir::currentPath() + "/themes");
 
     if (!themesDir.exists()) {
         qWarning() << "Themes directory does not exist!";
