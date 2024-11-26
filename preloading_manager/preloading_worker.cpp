@@ -23,7 +23,6 @@ void PreloadingWorker::preload(const QString& componentName, const QUrl& url) {
     }
 
     if (component->isReady()) {
-        qDebug() << component->isLoading() << " = IsLOADING";
         emit componentPreloaded(componentName, component);
         qDebug() << "Success";
     }

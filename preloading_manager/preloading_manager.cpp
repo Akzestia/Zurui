@@ -39,7 +39,6 @@ PreloadingManager::~PreloadingManager() {
 
 void PreloadingManager::preloadComponent(const QString& componentName,
                                          const QUrl& url) {
-    qDebug() << "Inside 1st";
     emit preloadComponentSignal(componentName, url);
 }
 
@@ -53,10 +52,9 @@ QQmlComponent* PreloadingManager::getComponent(const QString& name) {
     if (it != m_object_storage->end() && it->data()) {
         qDebug() << "Component found in storage for name:" << name;
         return it->data();
-    } else {
+    } else
         qWarning() << "Failed to return requested QQmlComponent for name:"
                    << name;
-    }
 
     return nullptr;
 }
@@ -66,9 +64,6 @@ void PreloadingManager::componentPreloaded(const QString& name,
     qDebug() << "Loaded " << name << " component";
 
     m_object_storage->insert(name, component);
-
-    qDebug() << "Current size of component storage:"
-             << m_object_storage->size();
 
     emit componentPreloadedSignal(name);
 }
