@@ -16,7 +16,6 @@
 class Zurui_Client {
   private:
 #pragma region Connection_related_fields
-    // Client configurations
     const char* client_ip_addr = nullptr;
     const char* client_vpn_addr = nullptr;
     const char* server_addr = nullptr;
@@ -24,34 +23,16 @@ class Zurui_Client {
 #pragma endregion
 
   public:
-    /*!
-     * \brief Default constructor.
-     */
-    Zurui_Client();
+    Zurui_Client() = delete;
 
-    /*!
-     * \brief Destructor.
-     */
     ~Zurui_Client() = default;
 
-    /*!
-     * \brief Copy constructor (deleted).
-     */
     Zurui_Client(const Zurui_Client&) = delete;
 
-    /*!
-     * \brief Copy assignment operator (deleted).
-     */
     Zurui_Client& operator=(const Zurui_Client&) = delete;
 
-    /*!
-     * \brief Move constructor (deleted).
-     */
     Zurui_Client(Zurui_Client&&) = delete;
 
-    /*!
-     * \brief Move assignment operator (deleted).
-     */
     Zurui_Client& operator=(Zurui_Client&&) = delete;
 };
 
