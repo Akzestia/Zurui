@@ -1,9 +1,17 @@
 #include "key_binding_manager.h"
 
+#include <QWindow>
+
+#include "qcoreevent.h"
 #include "qdebug.h"
+#include "qguiapplication.h"
+#include "qlogging.h"
+#include "qnamespace.h"
 #include "qqml.h"
+#include "qwindow.h"
 
 void w1() {
+    QCoreApplication::quit();
     qDebug() << "Switched to workspace 1";
 }
 void w2() {
@@ -113,6 +121,15 @@ KeyBindingManager::KeyBindingManager(QQmlEngine* engine, QObject* parent)
 }
 
 bool KeyBindingManager::eventFilter(QObject* obj, QEvent* event) {
+    if (event->type() == QEvent::Close) {
+        // qDebug() << "Close event intercepted. Preventing closure.";
+        QWindow* w = QGuiApplication::allWindows()[0];
+        if (w && w->isVisible())
+            w->hide();
+
+        return true;
+    }
+
     if (event->type() == QEvent::KeyRelease) {
         QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
         // qDebug() << "Key released:" << keyEvent->key();
