@@ -20,20 +20,10 @@
 class TranslationManager : public QObject {
     Q_OBJECT
   public:
-    /*!
-     * \brief Constructs the TranslationManager with a specified QQmlEngine.
-     * \param engine A pointer to the QQmlEngine used in the application.
-     * \param parent An optional parent QObject.
-     */
     explicit TranslationManager(QQmlEngine* engine, QObject* parent = nullptr);
 
-    /*!
-     * \brief Changes the application language.
-     *
-     * Loads and applies the translation for the specified language code.
-     *
-     * \param languageCode The code of the language to apply (e.g., "en", "fr").
-     */
+    Q_INVOKABLE QString currentLanguage() const;
+
     Q_INVOKABLE void changeLanguage(const QString& languageCode);
 
   private:
