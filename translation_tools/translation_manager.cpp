@@ -19,3 +19,7 @@ void TranslationManager::changeLanguage(const QString& languageCode) {
 #endif
     }
 }
+
+QString TranslationManager::currentLanguage() const {
+    return m_translator.language();
+}
