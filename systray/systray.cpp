@@ -4,13 +4,11 @@
 
 #include "qicon.h"
 #include "qkeysequence.h"
-#include "qlogging.h"
 #include "qobject.h"
 
 SysTray::SysTray(QGuiApplication* app) {
     trayIcon.setIcon(QIcon("/home/azure/Downloads/Untitled-modified.png"));
     trayIcon.setToolTip("ずるい");
-
 
     QString restoreAction_text = QObject::tr("Restore");
     QString quitAction_text = QObject::tr("Quit");
@@ -36,16 +34,6 @@ SysTray::SysTray(QGuiApplication* app) {
 
     QObject::connect(quitAction, &QAction::triggered, &*app,
                      &QCoreApplication::quit);
-
-    QObject::connect(&trayIcon, &QSystemTrayIcon::activated,
-                     [&](QSystemTrayIcon::ActivationReason reason) {
-                         switch (reason) {
-                         case QSystemTrayIcon::Trigger: {
-                         } break;
-                         default:
-                             return;
-                         }
-                     });
 
     trayIcon.show();
 }
