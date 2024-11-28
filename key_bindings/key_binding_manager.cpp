@@ -11,7 +11,6 @@
 #include "qwindow.h"
 
 void w1() {
-    QCoreApplication::quit();
     qDebug() << "Switched to workspace 1";
 }
 void w2() {
@@ -49,7 +48,6 @@ void KeyBindingManager::checkFocusedElement() {
 void KeyBindingManager::setFocusedItem(QQuickItem* item) {
     if (item) {
         const char* className = item->metaObject()->className();
-        // qDebug() << "Focused item type:" << className;
 
         m_canBlur =
             std::none_of(FocusTargets::nonBlurPrefixes.begin(),
@@ -57,10 +55,7 @@ void KeyBindingManager::setFocusedItem(QQuickItem* item) {
                          [className](const std::string& prefix) {
                              return std::string(className).find(prefix) == 0;
                          });
-
-        // qDebug() << (m_canBlur ? "Blur is enabled." : "Blur is disabled.");
     } else {
-        // qDebug() << "No item is currently focused.";
         m_canBlur = true;
     }
 }
@@ -132,14 +127,15 @@ bool KeyBindingManager::eventFilter(QObject* obj, QEvent* event) {
 
     if (event->type() == QEvent::KeyRelease) {
         QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
-        // qDebug() << "Key released:" << keyEvent->key();
         if (keyEvent->key() == Qt::Key_Control && m_isCtrlPressed)
             m_isCtrlPressed = false;
     }
+
     if (event->type() == QEvent::KeyPress) {
         QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
+#ifdef ZURUI_DEBUG
         // qDebug() << "Key pressed:" << keyEvent->key();
-
+#endif
         if (keyEvent->key() == Qt::Key_Control)
             m_isCtrlPressed = true;
 
