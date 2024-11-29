@@ -87,3 +87,6 @@ Docker*
 
 #Bundle script
 bundle.sh
+
+#Encryption related
+encryption_manager.cpp
