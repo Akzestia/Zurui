@@ -6,6 +6,11 @@ import QtMultimedia
 Window {
     id: mainWindow
 
+    Item {
+        id: rootMask
+        anchors.fill: parent
+    }
+
     maximumWidth: 480 * themeManager.currentTheme.app_ui_scale_factor
     maximumHeight: 640 * themeManager.currentTheme.app_ui_scale_factor
     minimumWidth: 480 * themeManager.currentTheme.app_ui_scale_factor
@@ -102,6 +107,19 @@ Window {
         anchors.horizontalCenter: parent.horizontalCenter
     }
 
+    Connections {
+        target: auth_window_bg.item
+
+        onWidthChanged: {
+            console.log(auth_window_bg.item.width);
+        }
+
+        onHeightChanged: {
+            console.log("Height of item");
+            console.log(auth_window_bg.item.height);
+        }
+    }
+
     Component {
         id: animated_bg
 
@@ -126,11 +144,21 @@ Window {
         id: static_bg
 
         Image {
-            height: parent.height
+            id: app_bg_static
+            height: Screen.height
             source: themeManager.currentTheme.auth_window_props.static_bg_source
 
             anchors.horizontalCenter: parent.horizontalCenter
             z: -1
+        }
+    }
+
+    Connections {
+        target: keyBindingManager
+
+        function onToggleBlur() {
+            console.log("Blur");
+            console.log("Source item width: [" + auth_window_bg.item.width + "]");
         }
     }
 
