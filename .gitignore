@@ -90,3 +90,6 @@ bundle.sh
 
 #Encryption related
 encryption_manager.cpp
+
+#.ini files
+*.ini
