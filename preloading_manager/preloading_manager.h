@@ -21,7 +21,8 @@
 class PreloadingManager : public QObject {
     Q_OBJECT
   public:
-    [[nodiscard]] explicit PreloadingManager(QQmlEngine* engine, QObject* parent = nullptr);
+    [[nodiscard]] explicit PreloadingManager(
+        QQmlEngine* engine, QObject* parent = nullptr) noexcept;
     ~PreloadingManager();
 
     Q_INVOKABLE void preloadComponent(const QString& name, const QUrl& url);

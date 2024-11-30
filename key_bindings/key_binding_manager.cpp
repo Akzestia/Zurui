@@ -68,7 +68,8 @@ void KeyBindingManager::toggle_blur() {
         emit toggleBlur();
 }
 
-KeyBindingManager::KeyBindingManager(QQmlEngine* engine, QObject* parent)
+KeyBindingManager::KeyBindingManager(QQmlEngine* engine,
+                                     QObject* parent) noexcept
     : m_engine(engine), QObject(parent) {
     m_keyBindings.insert(
         QList<int>(Bindings::workspace_1.begin(), Bindings::workspace_1.end()),

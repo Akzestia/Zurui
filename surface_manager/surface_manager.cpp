@@ -1,6 +1,6 @@
 #include "surface_manager.h"
 
-SurfaceManager::SurfaceManager(QObject* parent)
+SurfaceManager::SurfaceManager(QObject* parent) noexcept
     : m_engine(nullptr), QObject(parent) {
 }
 

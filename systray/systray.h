@@ -1,3 +1,6 @@
+#ifndef SYSTRAY_H
+#define SYSTRAY_H
+
 #include <QAction>
 #include <QMenu>
 #include <QSystemTrayIcon>
@@ -6,7 +9,7 @@
 
 class SysTray {
   public:
-    [[nodiscard]] SysTray(QGuiApplication* app);
+    [[nodiscard]] SysTray(QGuiApplication* app) noexcept;
     void show();
 
   private:
@@ -15,3 +18,4 @@ class SysTray {
     QAction* restoreAction = nullptr;
     QAction* quitAction = nullptr;
 };
+#endif //SYSTRAY_H

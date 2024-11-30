@@ -6,7 +6,7 @@
 #include "qkeysequence.h"
 #include "qobject.h"
 
-SysTray::SysTray(QGuiApplication* app) {
+SysTray::SysTray(QGuiApplication* app) noexcept {
     trayIcon.setIcon(QIcon("/home/azure/Downloads/Untitled-modified.png"));
     trayIcon.setToolTip("ずるい");
 
