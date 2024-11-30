@@ -20,15 +20,15 @@
 class TranslationManager : public QObject {
     Q_OBJECT
   public:
-    explicit TranslationManager(QQmlEngine* engine, QObject* parent = nullptr);
+    [[nodiscard]] explicit TranslationManager(QQmlEngine* engine, QObject* parent = nullptr) noexcept;
 
     Q_INVOKABLE QString currentLanguage() const;
 
     Q_INVOKABLE void changeLanguage(const QString& languageCode);
 
   private:
-    QTranslator m_translator;  ///< Handles the language translation files.
-    QQmlEngine* m_engine;      ///< Pointer to the application's QQmlEngine.
+    QTranslator m_translator;
+    QQmlEngine* m_engine;
 };
 
 #endif  // TRANSLATION_MANAGER_H

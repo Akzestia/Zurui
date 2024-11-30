@@ -1,7 +1,6 @@
 #include "preloading_manager.h"
 
 #include "preloading_worker.h"
-#include "qalgorithms.h"
 #include "qdir.h"
 #include "qhashfunctions.h"
 #include "qlogging.h"
@@ -9,7 +8,7 @@
 #include "qpointer.h"
 #include "qqmlcomponent.h"
 
-PreloadingManager::PreloadingManager(QQmlEngine* engine, QObject* parent)
+PreloadingManager::PreloadingManager(QQmlEngine* engine, QObject* parent) noexcept
     : QObject(parent), m_engine(engine) {
     m_worker = new PreloadingWorker(engine);
     m_worker->moveToThread(&m_worker_thread);

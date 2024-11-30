@@ -9,6 +9,7 @@ Surface::Surface(QQuickItem* parent) : QQuickItem(parent) {
 }
 
 Surface::~Surface() {
+
 }
 
 void Surface::componentComplete() {

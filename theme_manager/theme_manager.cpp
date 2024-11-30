@@ -12,7 +12,7 @@
 #include "qobject.h"
 #include "qobjectdefs.h"
 
-ThemeManager::ThemeManager(QQmlEngine* engine, QObject* parent)
+ThemeManager::ThemeManager(QQmlEngine* engine, QObject* parent) noexcept
     : QObject(parent), m_engine(engine), m_current_theme(nullptr) {
     loadThemes();
 }

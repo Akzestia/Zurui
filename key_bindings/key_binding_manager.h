@@ -46,7 +46,8 @@ class KeyBindingManager : public QObject {
     QThread workerThread;
 
   public:
-    explicit KeyBindingManager(QQmlEngine* engine, QObject* parent = nullptr);
+    [[nodiscard]] explicit KeyBindingManager(
+        QQmlEngine* engine, QObject* parent = nullptr) noexcept;
 
     Q_INVOKABLE void setFocusedItem(QQuickItem* item);
 

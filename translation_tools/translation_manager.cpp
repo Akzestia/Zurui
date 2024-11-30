@@ -1,6 +1,6 @@
 #include "translation_manager.h"
 
-TranslationManager::TranslationManager(QQmlEngine* engine, QObject* parent)
+TranslationManager::TranslationManager(QQmlEngine* engine, QObject* parent) noexcept
     : QObject(parent), m_engine(engine) {
 }
 
