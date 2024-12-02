@@ -3,6 +3,7 @@
 #define ZURUI_CLIENT_H
 #include <openssl/evp.h>
 
+#include <cstddef>
 #include <cstdint>
 #include <string>
 #include <vector>
@@ -81,6 +82,9 @@ class ZuruiClient {
     ZuruiClient(ZuruiClient&&) = delete;
 
     ZuruiClient& operator=(ZuruiClient&&) = delete;
+
+    void setAlpn(uint8_t* alpn, size_t size);
+    void setClientVersion(uint8_t* version, size_t size);
 };
 
 #endif  // ZURUI_CLIENT_H
