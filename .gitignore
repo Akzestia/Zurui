@@ -93,3 +93,7 @@ encryption_manager.cpp
 
 #.ini files
 *.ini
+
+#gh pr create files
+body.txt
+title.txt
