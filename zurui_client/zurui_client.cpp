@@ -4,7 +4,11 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 
+#include <algorithm>
 #include <boost/asio.hpp>
+#include <cmath>
+#include <cstddef>
+#include <cstdint>
 #include <cstdlib>
 #include <cstring>
 #include <iostream>
@@ -39,6 +43,20 @@ void ZuruiClient::setNetworkInterface() {
 #endif
 }
 
+void ZuruiClient::setAlpn(uint8_t* alpn, size_t size) {
+    if (size != 16 || !m_settings)
+        return;
+
+    std::memcpy(m_settings->alpn, alpn, size);
+}
+
+void ZuruiClient::setClientVersion(uint8_t* version, size_t size) {
+    if (size != 3 || !m_settings)
+        return;
+
+    std::memcpy(m_settings->client_version, version, size);
+}
+
 ZuruiClient::ZuruiClient() noexcept {
     m_settings = new ClientSettings;
 
@@ -46,7 +64,18 @@ ZuruiClient::ZuruiClient() noexcept {
     m_settings->preferred_network = WIFI;  // ETHERNET
     m_settings->ipv = v4;
     m_settings->max_idle_timeout = 3000;
+    m_settings->client_address = "localhost";
 
+    m_settings->server_port = 8080;
+    m_settings->listener_port = 8081;
+
+    m_settings->initial_rtt = 0;
+    m_settings->handshake_time = 0;
+
+    uint8_t _alpn[16] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    uint8_t client_version[3] = {1, 0, 0};
+    setClientVersion(client_version, sizeof(client_version));
+    setAlpn(_alpn, sizeof(_alpn));
     setNetworkInterface();
 }
 
