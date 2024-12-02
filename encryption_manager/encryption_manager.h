@@ -22,11 +22,11 @@ class EncryptionManager {
   public:
     [[nodiscard]] EncryptionManager() noexcept;
 
-    cypherResult* encryptUserData(const char* user_name,
-                                  const char* user_password) const;
-    cypherResult* encryptUserData(const char* user_name, const char* user_email,
-                                  const char* user_password,
-                                  const char* password_repeat) const;
+    [[nodiscard]] cypherResult* encryptUserData(
+        const char* user_name, const char* user_password) const;
+    [[nodiscard]] cypherResult* encryptUserData(
+        const char* user_name, const char* user_email,
+        const char* user_password, const char* password_repeat) const;
 };
 
 #endif  // ENCRYPTION_MANAGER_H
