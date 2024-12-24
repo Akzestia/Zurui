@@ -6,8 +6,7 @@
 > During November, the project may experience fewer updates due to the Advent of Code.
 > Stay tuned for more changes in the upcoming months! ^_^
 
-**Zurui** - an early-stage, high-speed communication platform utilizing a decentralized network for secure data exchange. Using VPN and QUIC, it establishes private, peer-to-peer connections after an initial handshake, enabling scalable, low-latency interactions without relying on central servers.
-
+**Zurui** - is an early-stage, high-speed communication platform, with zero  data collection, no bloat and Arch Linux level of customization.
 ## Current Status 🛠️
 
 This repository is in the early stages of development. The primary goal is to create a decentralized chat application that allows for high-speed data transfer and secure communication.
