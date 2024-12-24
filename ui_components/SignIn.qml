@@ -79,7 +79,6 @@ Item {
                         }
 
                         onClicked: {
-                            console.log(mainWindow.width);
                             signInLoader.anchors.leftMargin = mainWindow.width * -1;
                             signInLoader.opacity = 0;
                             signUpLoader.opacity = 1;
@@ -93,6 +92,16 @@ Item {
                             duration: 150
                         }
                     }
+                }
+            }
+
+            Button {
+                text: "Go to Main"
+                onClicked: {
+                    if (signInLoader.opacity != 0)
+                        signInLoader.opacity = 0;
+                    if (signUpLoader.opacity != 0)
+                        signUpLoader.opacity = 0;
                 }
             }
         }
