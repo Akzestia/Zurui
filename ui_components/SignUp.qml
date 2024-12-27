@@ -7,41 +7,16 @@ import QtQuick.Effects
 Item {
     id: signUp
 
-    Panel {
-        id: panel1
-        implicitWidth: 480 * themeManager.currentTheme.app_ui_scale_factor * .95
-        implicitHeight: 640 * themeManager.currentTheme.app_ui_scale_factor * .95
-
-        anchors.centerIn: parent
-        clip: true
-    }
-
-    Item {
-        id: maskItem
-        anchors.fill: parent
-        layer.enabled: true
-        layer.smooth: true
-        visible: false
-
-        PanelMask {
-            item: panel1
-        }
-    }
-
     Rectangle {
-        id: blur_bg
-
-        // width: signUp.width * .95
-        // height: signUp.height * .95
+        id: content_wrapper
 
         implicitWidth: 480 * themeManager.currentTheme.app_ui_scale_factor * .95
         implicitHeight: 640 * themeManager.currentTheme.app_ui_scale_factor * .95
 
         anchors.centerIn: parent
 
-        color: "#ffffff"
-        radius: 10 * themeManager.currentTheme.app_ui_scale_factor
-        opacity: 1
+        color: themeManager.currentTheme.auth_window_props.sign_up_bg_color
+        radius: themeManager.currentTheme.auth_window_props.sign_in_frame_radius * themeManager.currentTheme.app_ui_scale_factor
 
         ColumnLayout {
             id: c_layout
@@ -136,36 +111,6 @@ Item {
             }
         }
     }
-    component PanelMask: Rectangle {
-        required property Item item
-        x: item.x
-        y: item.y
-        width: item.width
-        height: item.height
-        radius: item.radius
-    }
-
-    component Panel: Rectangle {
-        id: component
-        radius: 20
-        color: "transparent"
-        border.width: 1
-        border.color: "#8090a0"
-    }
-
-    // MultiEffect {
-    //     anchors.centerIn: parent
-    //     source: auth_window_bg.item
-    //     autoPaddingEnabled: false
-    //     maskEnabled: true
-    //     maskSource: maskItem
-    //     maskThresholdMin: 0.5
-    //     maskSpreadAtMin: 1.0
-    //     blurEnabled: true
-    //     blurMax: 80
-    //     blur: .38
-    //     brightness: -.2
-    // }
 
     Connections {
         target: themeManager

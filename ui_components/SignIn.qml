@@ -45,6 +45,7 @@ Item {
                 id: password_input
                 Layout.preferredWidth: c_layout.width * .75
                 Layout.preferredHeight: 35
+                isPasswordField: true
                 cwidth: user_name_input.Layout.preferredWidth
                 cheight: user_name_input.Layout.preferredHeight
                 placeholderText: qsTr("Password")

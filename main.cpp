@@ -8,6 +8,7 @@
 #include <QtQml/QQmlExtensionPlugin>
 #include <cmath>
 #include <cstdio>
+#include <cstdlib>
 
 #include "key_bindings/key_binding_manager.h"
 #include "preloading_manager/preloading_manager.h"
@@ -15,7 +16,6 @@
 #include "qnamespace.h"
 #include "qplugin.h"
 #include "qqml.h"
-#include "surface_manager/surface_manager.h"
 #include "systray/systray.h"
 #include "theme_manager/theme_manager.h"
 #include "translation_tools/translation_manager.h"
