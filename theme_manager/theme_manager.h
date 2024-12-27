@@ -7,6 +7,9 @@
 #include <QVariantMap>
 #include <map>
 
+#include "live_update_xt.h"
+#include "qcoreapplication.h"
+#include "qtmetamacros.h"
 /*!
  * \class ThemeManager
  * \brief Manages application themes.
@@ -45,11 +48,13 @@ class ThemeManager : public QObject {
     void themesChanged();
 
     void currentThemeChanged();
-
+  public slots:
+    void theme_config_changed(const QString& path);
   private:
     QQmlEngine* m_engine;
     QPointer<QObject> m_current_theme;
     QVariantMap m_themes;
+    LiveUpdateXt m_live_xt;
 };
 
 #endif  // THEME_MANAGER_H

@@ -15,6 +15,13 @@
 ThemeManager::ThemeManager(QQmlEngine* engine, QObject* parent) noexcept
     : QObject(parent), m_engine(engine), m_current_theme(nullptr) {
     loadThemes();
+
+    connect(&m_live_xt, &LiveUpdateXt::request_theme_update, this,
+            &ThemeManager::theme_config_changed);
+}
+
+void ThemeManager::theme_config_changed(const QString& path) {
+    qDebug() << "Theme configuration was changed at: " << path;
 }
 
 void ThemeManager::loadThemes() {
@@ -52,6 +59,7 @@ void ThemeManager::loadThemes() {
         QObject* themeObject = createThemeObject(themePath);
         if (themeObject) {
             m_themes.insert(themeName, QVariant::fromValue(themeObject));
+            m_live_xt.addPath(themePath);
         }
     }
 }
