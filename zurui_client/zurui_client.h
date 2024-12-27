@@ -3,10 +3,17 @@
 #define ZURUI_CLIENT_H
 #include <openssl/evp.h>
 
+#include <QObject>
+#include <QThread>
 #include <cstddef>
 #include <cstdint>
 #include <string>
 #include <vector>
+
+#include "../../Zurui-WorkShop/client/client.h"
+#include "client_worker.h"
+#include "qcontainerfwd.h"
+#include "qtmetamacros.h"
 
 /*
 
@@ -18,7 +25,7 @@
     application lifetime.
 */
 
-enum NetworkTpes : uint8_t { WIFI = 0x00, ETHERNET = 0x01 };
+enum NetworkTypes : uint8_t { WIFI = 0x00, ETHERNET = 0x01 };
 enum IpvTypes : uint8_t { v4 = 0x00, v6 = 0x01 };
 
 struct NAT_Mapping {
@@ -36,33 +43,46 @@ struct NetworkInterface {
 
 struct ClientSettings {
     uint8_t client_version[3];
+    uint8_t alpn[16];
+
     NetworkInterface network_interface;
+    NetworkTypes preferred_network;
     const char* client_address;
+    IpvTypes ipv;
 
     uint16_t server_port;
     uint16_t listener_port;
 
-    uint8_t alpn[16];
-    uint64_t blockchain_signature[64];
-    uint64_t public_key[64];
+    uint64_t client_uuid;
+    uint64_t handshake_nonce;
 
-    uint8_t client_uuid[16];
-    uint64_t encryption_key[64];
-    uint64_t handshake_nonce[12];
-
-    uint32_t max_idle_timeout;
-
-    bool enable_multipath;
-
-    IpvTypes ipv;
-    NetworkTpes preferred_network;
-
-    uint64_t initial_rtt;
     uint64_t handshake_time;
 };
 
 class ZuruiClient {
+    Q_OBJECT
+    QThread workerThread;
+
+  public:
+    [[nodiscard]] ZuruiClient() noexcept;
+
+    ~ZuruiClient() noexcept;
+
+    ZuruiClient(const ZuruiClient&) = delete;
+    ZuruiClient& operator=(const ZuruiClient&) = delete;
+    ZuruiClient(ZuruiClient&&) = delete;
+    ZuruiClient& operator=(ZuruiClient&&) = delete;
+
+    void setAlpn(const char* alpn);
+    void setClientVersion(const char* version);
+
+    Q_INVOKABLE void sign_in(const QString& u_name, const QString& u_password);
+    Q_INVOKABLE void sign_up(const QString& u_name, const QString& u_email,
+                             const QString& u_password);
+    Q_INVOKABLE void sign_up_confirm(const QString& u_confirm_code);
+
   private:
+    ずるい_クライアント m_zclp_client;
     ClientSettings* m_settings;
     std::vector<NAT_Mapping*> m_mappings;
 
@@ -70,21 +90,7 @@ class ZuruiClient {
     std::vector<std::string> getNetworkInterfaces() const;
     void setNetworkInterface();
 
-  public:
-    [[nodiscard]] ZuruiClient() noexcept;
-
-    ~ZuruiClient();
-
-    ZuruiClient(const ZuruiClient&) = delete;
-
-    ZuruiClient& operator=(const ZuruiClient&) = delete;
-
-    ZuruiClient(ZuruiClient&&) = delete;
-
-    ZuruiClient& operator=(ZuruiClient&&) = delete;
-
-    void setAlpn(uint8_t* alpn, size_t size);
-    void setClientVersion(uint8_t* version, size_t size);
+    ClientWorker m_worker;
 };
 
 #endif  // ZURUI_CLIENT_H
