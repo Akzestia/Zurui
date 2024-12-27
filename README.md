@@ -2,10 +2,6 @@
 
 [🇺🇸 English](README.md) | [🇯🇵 日本語](README_jap.md) | [🇺🇦 Українська](README_ukr.md)
 
-> [!NOTE]  
-> During November, the project may experience fewer updates due to the Advent of Code.
-> Stay tuned for more changes in the upcoming months! ^_^
-
 **Zurui** - is an early-stage, high-speed communication platform, with zero  data collection, no bloat, no AI and Arch Linux level of customization.
 ## Current Status 🛠️
 
