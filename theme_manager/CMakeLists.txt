@@ -7,6 +7,7 @@ qt_add_qml_module(theme_manager
     VERSION 1.0
     SOURCES
         theme_manager.cpp theme_manager.h
+        live_update_xt.cpp live_update_xt.h
     RESOURCE_PREFIX /theme_manager
 )
 
