@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Effects
 import QtQuick.Controls
 import UIcomponents
 import QtMultimedia
@@ -11,10 +12,18 @@ Window {
         anchors.fill: parent
     }
 
-    maximumWidth: 480 * themeManager.currentTheme.app_ui_scale_factor
-    maximumHeight: 640 * themeManager.currentTheme.app_ui_scale_factor
+    visibility: Windowed
+
+    // maximumWidth: 480 * themeManager.currentTheme.app_ui_scale_factor
+    // maximumHeight: 640 * themeManager.currentTheme.app_ui_scale_factor
     minimumWidth: 480 * themeManager.currentTheme.app_ui_scale_factor
     minimumHeight: 640 * themeManager.currentTheme.app_ui_scale_factor
+
+    // maximumWidth: undefined
+    // maximumHeight: undefined
+    // minimumWidth: undefined
+    // minimumHeight: undefined
+
     visible: true
     title: qsTr("Zurui")
 
@@ -27,7 +36,7 @@ Window {
     Loader {
         id: signInLoader
         sourceComponent: signInComponentL
-        opacity: 0
+        opacity: 1
 
         anchors {
             top: parent.top
@@ -55,7 +64,8 @@ Window {
         }
 
         Component.onCompleted: {
-            signInLoader.anchors.leftMargin = mainWindow.width * -1;
+            if (opacity == 0)
+                signInLoader.anchors.leftMargin = Screen.width * -1;
         }
     }
 
@@ -68,7 +78,7 @@ Window {
     Loader {
         id: signUpLoader
         sourceComponent: signUpComponentL
-        opacity: 1
+        opacity: 0
 
         anchors {
             top: parent.top
@@ -90,6 +100,11 @@ Window {
                 easing.type: Easing.InOutQuad
             }
         }
+
+        Component.onCompleted: {
+            if (opacity == 0)
+                signUpLoader.anchors.leftMargin = Screen.width;
+        }
     }
 
     onActiveFocusItemChanged: {
@@ -104,17 +119,30 @@ Window {
 
         z: -1
         height: parent.height
-        anchors.horizontalCenter: parent.horizontalCenter
+        clip: true
+        anchors.centerIn: parent
     }
+
+    // Rectangle {
+    //     id: wrapper
+    //     width: parent.width * .98
+    //     height: parent.height * .92
+    //     color: themeManager.currentTheme.app_props.workspace_argb_color
+    //     radius: 20
+    //     border.width: 3
+    //     border.color: themeManager.currentTheme.app_props.workspace_argb_border_color
+    //     z: -1
+    //     anchors.centerIn: parent
+    // }
 
     Connections {
         target: auth_window_bg.item
 
-        onWidthChanged: {
+        function onWidthChanged() {
             console.log(auth_window_bg.item.width);
         }
 
-        onHeightChanged: {
+        function onHeightChanged() {
             console.log("Height of item");
             console.log(auth_window_bg.item.height);
         }
@@ -125,14 +153,15 @@ Window {
 
         Video {
             id: app_bg_video
-            height: parent.height
             source: themeManager.currentTheme.auth_window_props.animated_bg_source
 
             anchors.horizontalCenter: parent.horizontalCenter
             autoPlay: true
             loops: MediaPlayer.Infinite
-
+            scale: 1.3
             z: -1
+
+            layer.enabled: true
 
             onSourceChanged: {
                 app_bg_video.play();
