@@ -15,6 +15,7 @@ Item {
     property real textSize: 14
 
     property real bgRadius: 3
+    property bool isPasswordField: false
     property string bgColor: "#343434"
 
     focus: true
@@ -68,9 +69,11 @@ Item {
             color: c_text_input.textColor
             font.pixelSize: c_text_input.textSize
             text: ""
+            passwordCharacter: themeManager.currentTheme.app_props.password_charcter
+            passwordMaskDelay: themeManager.currentTheme.app_props.password_mask_delay
+            echoMode: c_text_input.isPasswordField ? TextInput.Password : TextInput.Normal
 
             activeFocusOnTab: c_text_input.cenabled
-
             horizontalAlignment: Text.AlignHCenter
 
             onFocusChanged: focused => {
