@@ -1,19 +1,22 @@
-#include "zurui_client.h"
+#include "zurui_client.h"`
 
 #include <net/if.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
 
-#include <algorithm>
 #include <boost/asio.hpp>
 #include <cmath>
 #include <cstddef>
-#include <cstdint>
 #include <cstdlib>
 #include <cstring>
-#include <iostream>
 #include <string>
 #include <vector>
+
+#include "qcontainerfwd.h"
+#include "qobject.h"
+
+void ZuruiClient::sign_in(const QString& u_name, const QString& u_password) {
+}
 
 void ZuruiClient::setNetworkInterface() {
     std::vector<NetworkInterface> interfaces = getMTU();
@@ -43,40 +46,47 @@ void ZuruiClient::setNetworkInterface() {
 #endif
 }
 
-void ZuruiClient::setAlpn(uint8_t* alpn, size_t size) {
-    if (size != 16 || !m_settings)
-        return;
+void ZuruiClient::setAlpn(const char* alpn) {
+    size_t size = strlen(alpn);
+    if (size <= 0 || size > 3 || !m_settings)
+        throw "Failed to set the alpn";
 
-    std::memcpy(m_settings->alpn, alpn, size);
+    std::memcpy(m_settings->alpn, alpn, strlen(alpn));
 }
 
-void ZuruiClient::setClientVersion(uint8_t* version, size_t size) {
-    if (size != 3 || !m_settings)
-        return;
+void ZuruiClient::setClientVersion(const char* version) {
+    size_t size = strlen(version);
+    if (size <= 0 || size > 16 || !m_settings)
+        throw "Failed to set the alpn";
 
-    std::memcpy(m_settings->client_version, version, size);
+    std::memcpy(m_settings->client_version, version, strlen(version));
 }
 
 ZuruiClient::ZuruiClient() noexcept {
     m_settings = new ClientSettings;
 
-    m_settings->enable_multipath = false;
-    m_settings->preferred_network = WIFI;  // ETHERNET
+    m_settings->preferred_network = WIFI;
     m_settings->ipv = v4;
-    m_settings->max_idle_timeout = 3000;
-    m_settings->client_address = "localhost";
 
     m_settings->server_port = 8080;
     m_settings->listener_port = 8081;
 
-    m_settings->initial_rtt = 0;
-    m_settings->handshake_time = 0;
+    m_settings->handshake_time = 100;
 
-    uint8_t _alpn[16] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    uint8_t client_version[3] = {1, 0, 0};
-    setClientVersion(client_version, sizeof(client_version));
-    setAlpn(_alpn, sizeof(_alpn));
+    const char* __alpn__ = "v1-zclp-xt";
+    const char* __version__ = "001";
+    setClientVersion(__version__);
+    setAlpn(__alpn__);
     setNetworkInterface();
+
+    m_worker.moveToThread(&workerThread);
+
+    QObject::connect(this, &ZuruiClient::sign_in, &m_worker,
+                     &ClientWorker::sign_in);
+    QObject::connect(this, &ZuruiClient::sign_up, &m_worker,
+                     &ClientWorker::sign_up);
+    QObject::connect(this, &ZuruiClient::sign_up_confirm, &m_worker,
+                     &ClientWorker::sign_up_confirm);
 }
 
 std::vector<std::string> ZuruiClient::getNetworkInterfaces() const {
@@ -140,7 +150,7 @@ std::vector<NetworkInterface> ZuruiClient::getMTU() const {
     return result;
 }
 
-ZuruiClient::~ZuruiClient() {
+ZuruiClient::~ZuruiClient() noexcept {
     if (m_settings) {
         delete m_settings;
         m_settings = nullptr;
