@@ -130,6 +130,9 @@ property string bg_source: Qt.resolvedUrl("assets/plana-blue-archive-moewalls-co
 ### Application UI Scaling Factor
 
 ```qml
+property int referenceWidth: 1920
+property int referenceHeight: 1080
+
 let screenWidth = Screen.width;
 let screenHeight = Screen.height;
 return Math.min(screenWidth / referenceWidth, screenHeight / referenceHeight);
