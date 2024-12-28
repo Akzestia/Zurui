@@ -1,5 +1,3 @@
-# Configuration Layout for Theme configuration files 
-
 ## Table of Contents
 1. [Complete Layout](#complete-layout)
 2. [App Properties](#app-properties) 
