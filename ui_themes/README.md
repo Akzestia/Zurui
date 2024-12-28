@@ -1,14 +1,15 @@
 # Theme Configuration Layout
 
 ## Table of Contents
+
 1. [Complete Layout](#complete-layout)
-2. [App Properties](#app-properties) 
-3. [Animation Properties](#animation-properties) 
-4. [Authentication Window Properties](#authentication-window-properties) 
-5. [Main Window Properties](#main-window-properties) 
+2. [App Properties](#app-properties)
+3. [Animation Properties](#animation-properties)
+4. [Authentication Window Properties](#authentication-window-properties)
+5. [Main Window Properties](#main-window-properties)
 6. [Application UI Scaling Factor](#application-ui-scaling-factor)
 
-### Complete Layout 
+### Complete Layout
 
 ```qml
 QtObject {
