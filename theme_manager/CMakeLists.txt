@@ -8,6 +8,7 @@ qt_add_qml_module(theme_manager
     SOURCES
         theme_manager.cpp theme_manager.h
         live_update_xt.cpp live_update_xt.h
+        live_xt_worker.cpp live_xt_worker.h
     RESOURCE_PREFIX /theme_manager
 )
 
