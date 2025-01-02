@@ -42,9 +42,7 @@ QtObject {
         property real sign_in_frame_radius: 20
         property string sign_in_user_name_input_text_color: "cyan"
         property string sign_in_password_input_text_color: "cyan"
-        //1st & 2nd part of the "go to sign up" label
         property string sign_in_switch_label_text_color: "#FFFFFF"
-        //Color when hovering on the 2nd part of the label
         property string sign_in_switch_label_hover_text_color: "cyan"
 
         property string sign_up_bg_color: "#88000000"
@@ -57,10 +55,21 @@ QtObject {
         property string sign_up_password_input_placeholder_text_color: "cyan"
         property string sign_up_re_password_input_text_color: "cyan"
         property string sign_up_re_password_input_placeholder_text_color: "cyan"
-        //1st & 2nd part of the "go to sign up" label
         property string sign_up_switch_label_text_color: "#FFFFFF"
-        //Color when hovering on the 2nd part of the label
         property string sign_up_switch_label_hover_text_color: "cyan"
+
+        property string auth_btn_color: "#FFFFFF"
+        property string auth_btn_hover_color: "#000000"
+        property string auth_btn_sign_in_text: "Sign in ^_^"
+        property string auth_btn_sign_up_text: "Sign up >_<"
+        property string auth_btn_text_color: "#000000"
+        property string auth_btn_text_hover_color: "#FFFFFF"
+        property string auth_btn_border_color: "#FFFFFF"
+        property string auth_btn_clicked_color: "#FFFFFF"
+        property string auth_btn_clicked_text_color: "magenta"
+
+        property real auth_btn_radius: 10
+        property real auth_btn_border_width: 13
     }
 
     property var main_window_props: QtObject {

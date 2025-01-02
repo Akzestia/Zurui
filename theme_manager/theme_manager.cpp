@@ -7,21 +7,28 @@
 #include <QQmlComponent>
 #include <QQmlContext>
 
+#include "qdebug.h"
 #include "qdir.h"
 #include "qlogging.h"
 #include "qobject.h"
 #include "qobjectdefs.h"
+#include "qpoint.h"
 
 ThemeManager::ThemeManager(QQmlEngine* engine, QObject* parent) noexcept
     : QObject(parent), m_engine(engine), m_current_theme(nullptr) {
     loadThemes();
+    m_live_xt.monitor();
 
     connect(&m_live_xt, &LiveUpdateXt::request_theme_update, this,
             &ThemeManager::theme_config_changed);
 }
 
 void ThemeManager::theme_config_changed(const QString& path) {
+#ifdef ZURUI_DEBUG
     qDebug() << "Theme configuration was changed at: " << path;
+#endif
+    m_current_theme = createThemeObject(path);
+    emit currentThemeChanged();
 }
 
 void ThemeManager::loadThemes() {
@@ -76,20 +83,46 @@ QObject* ThemeManager::createThemeObject(const QString& path) {
         return nullptr;
     }
 
-    QQmlComponent component(m_engine, QUrl::fromLocalFile(path));
-    if (component.status() != QQmlComponent::Ready) {
+    m_engine->clearComponentCache();
+    m_engine->trimComponentCache();
+    m_engine->collectGarbage();
+
+    QUrl themeUrl = QUrl::fromLocalFile(path);
+    // themeUrl.setQuery("nocache="
+    //                   + QString::number(QDateTime::currentMSecsSinceEpoch()));
+
+    QQmlComponent* component = new QQmlComponent(m_engine, themeUrl);
+    component->loadUrl(themeUrl, QQmlComponent::PreferSynchronous);
+
+    // QProcess process;
+    // process.start("cat", QStringList() << path);
+    // process.waitForFinished();
+    // QString output = process.readAllStandardOutput();
+    // if (!output.isEmpty()) {
+    //     qDebug() << "Theme file:\n" << output;
+    //     auto split = output.split('\n');
+    //     for (int i = 0; i < split.size(); i++) {
+    //         qDebug() << split[i];
+    //     }
+    // }
+
+    if (component->status() != QQmlComponent::Ready) {
 #ifdef ZURUI_DEBUG
-        qWarning() << "Failed to load theme:" << component.errorString();
+        qWarning() << "Failed to load theme:" << component->errorString();
 #endif
+        delete component;
         return nullptr;
     }
 
-    QObject* themeObject = component.create();
+    QObject* themeObject = component->create();
+    delete component;
+
     if (!themeObject) {
 #ifdef ZURUI_DEBUG
         qWarning() << "Failed to instantiate theme object from QML file";
 #endif
     }
+
     return themeObject;
 }
 

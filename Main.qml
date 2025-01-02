@@ -12,17 +12,19 @@ Window {
         anchors.fill: parent
     }
 
+    Connections {
+        target: themeManager
+        function onCurrentThemeChanged() {
+        //called when any of theme files was updated
+        }
+    }
+
     visibility: Windowed
 
     // maximumWidth: 480 * themeManager.currentTheme.app_ui_scale_factor
     // maximumHeight: 640 * themeManager.currentTheme.app_ui_scale_factor
     minimumWidth: 480 * themeManager.currentTheme.app_ui_scale_factor
     minimumHeight: 640 * themeManager.currentTheme.app_ui_scale_factor
-
-    // maximumWidth: undefined
-    // maximumHeight: undefined
-    // minimumWidth: undefined
-    // minimumHeight: undefined
 
     visible: true
     title: qsTr("Zurui")
@@ -122,18 +124,6 @@ Window {
         clip: true
         anchors.centerIn: parent
     }
-
-    // Rectangle {
-    //     id: wrapper
-    //     width: parent.width * .98
-    //     height: parent.height * .92
-    //     color: themeManager.currentTheme.app_props.workspace_argb_color
-    //     radius: 20
-    //     border.width: 3
-    //     border.color: themeManager.currentTheme.app_props.workspace_argb_border_color
-    //     z: -1
-    //     anchors.centerIn: parent
-    // }
 
     Connections {
         target: auth_window_bg.item

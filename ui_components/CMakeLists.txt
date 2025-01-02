@@ -9,6 +9,7 @@ qt_add_qml_module(ui_components
         SignIn.qml
         SignUp.qml
         components/CTextInput.qml
+        components/AuthButton.qml
     RESOURCE_PREFIX
         /ui_components
 )
