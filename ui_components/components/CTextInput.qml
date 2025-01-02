@@ -18,6 +18,8 @@ Item {
     property bool isPasswordField: false
     property string bgColor: "#343434"
 
+    property bool can_change: true
+
     focus: true
 
     Rectangle {
@@ -25,7 +27,7 @@ Item {
         color: c_text_input.bgColor
         radius: c_text_input.bgRadius
         width: c_text_input.cwidth
-        height: c_text_input.cheight
+        height: c_text_input.cheight * themeManager.currentTheme.app_ui_scale_factor
         clip: true
 
         MouseArea {
@@ -67,11 +69,13 @@ Item {
             anchors.right: parent.right
             anchors.rightMargin: 15
             color: c_text_input.textColor
-            font.pixelSize: c_text_input.textSize
+            font.pixelSize: c_text_input.textSize * themeManager.currentTheme.app_ui_scale_factor
             text: ""
             passwordCharacter: themeManager.currentTheme.app_props.password_charcter
             passwordMaskDelay: themeManager.currentTheme.app_props.password_mask_delay
             echoMode: c_text_input.isPasswordField ? TextInput.Password : TextInput.Normal
+
+            enabled: !c_text_input.can_change
 
             activeFocusOnTab: c_text_input.cenabled
             horizontalAlignment: Text.AlignHCenter
