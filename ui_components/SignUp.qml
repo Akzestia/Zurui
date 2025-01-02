@@ -20,49 +20,50 @@ Item {
 
         ColumnLayout {
             id: c_layout
+            width: parent.width * .92
+            height: parent.height * .6
             anchors {
-                left: parent.left
-                right: parent.right
-                top: parent.top
-                bottom: parent.bottom
-                topMargin: 100
-                bottomMargin: 100
+                centerIn: parent
             }
 
             CTextInput {
                 id: user_name_input
-                Layout.preferredWidth: c_layout.width * .75
+                Layout.preferredWidth: content_wrapper.width * .75
                 Layout.preferredHeight: 35
                 cwidth: user_name_input.Layout.preferredWidth
                 cheight: user_name_input.Layout.preferredHeight
                 placeholderText: qsTr("Username")
+                can_change: auth_btn.is_processing
                 Layout.alignment: Qt.AlignHCenter
             }
             CTextInput {
                 id: user_email_input
-                Layout.preferredWidth: c_layout.width * .75
+                Layout.preferredWidth: content_wrapper.width * .75
                 Layout.preferredHeight: 35
                 cwidth: user_name_input.Layout.preferredWidth
                 cheight: user_name_input.Layout.preferredHeight
                 placeholderText: qsTr("Email")
+                can_change: auth_btn.is_processing
                 Layout.alignment: Qt.AlignHCenter
             }
             CTextInput {
                 id: password_input
-                Layout.preferredWidth: c_layout.width * .75
+                Layout.preferredWidth: content_wrapper.width * .75
                 Layout.preferredHeight: 35
                 cwidth: user_name_input.Layout.preferredWidth
                 cheight: user_name_input.Layout.preferredHeight
                 placeholderText: qsTr("Password")
+                can_change: auth_btn.is_processing
                 Layout.alignment: Qt.AlignHCenter
             }
             CTextInput {
                 id: repeat_password_input
-                Layout.preferredWidth: c_layout.width * .75
+                Layout.preferredWidth: content_wrapper.width * .75
                 Layout.preferredHeight: 35
                 cwidth: user_name_input.Layout.preferredWidth
                 cheight: user_name_input.Layout.preferredHeight
                 placeholderText: qsTr("Repeat password")
+                can_change: auth_btn.is_processing
                 Layout.alignment: Qt.AlignHCenter
             }
 
@@ -70,6 +71,7 @@ Item {
                 Layout.alignment: Qt.AlignHCenter
                 Text {
                     text: qsTr("Already have an account?")
+                    color: themeManager.currentTheme.auth_window_props.sign_in_switch_label_text_color
                 }
                 Text {
                     id: sign_in_label
@@ -78,22 +80,24 @@ Item {
                     font.underline: true
                     Layout.leftMargin: 1.5
 
-                    color: "#000000"
+                    color: themeManager.currentTheme.auth_window_props.sign_in_switch_label_text_color
 
                     MouseArea {
                         anchors.fill: parent
                         hoverEnabled: true
 
                         onEntered: {
-                            sign_in_label.color = "cyan";
+                            sign_in_label.color = themeManager.currentTheme.auth_window_props.sign_in_switch_label_hover_text_color;
                             console.log("entered" + sign_in_label.color);
                         }
                         onExited: {
-                            sign_in_label.color = "black";
+                            sign_in_label.color = themeManager.currentTheme.auth_window_props.sign_in_switch_label_text_color;
                             console.log("exited" + sign_in_label.color);
                         }
 
                         onClicked: {
+                            if (auth_btn.is_processing)
+                                return;
                             signUpLoader.anchors.leftMargin = mainWindow.width;
                             signUpLoader.opacity = 0;
                             signInLoader.opacity = 1;
@@ -108,6 +112,13 @@ Item {
                         }
                     }
                 }
+            }
+
+            AuthButton {
+                id: auth_btn
+                Layout.preferredWidth: content_wrapper.width * .56
+                Layout.preferredHeight: 40
+                Layout.alignment: Qt.AlignCenter
             }
         }
     }
