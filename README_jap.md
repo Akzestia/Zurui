@@ -8,8 +8,8 @@
 
 ### カスタム QUIC 実装
 
-- [zclp++ 🚀](https://github.com/example/zclp++) - C++ QUIC 実装
-- [zclp-rs 🦀](https://github.com/example/zclp-rs) - Rust QUIC 実装
+- [zclp++ 🚀](https://github.com/Akzestia/zclp-plus-plus) - C++ QUIC 実装
+- [zclp-rs 🦀](https://github.com/Akzestia/zclp-rs) - Rust QUIC 実装
 
 ------------------------
 
