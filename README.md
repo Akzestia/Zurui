@@ -8,8 +8,8 @@
 
 ### Custom QUIC Implementation
 
-- [zclp++ 🚀](https://github.com/example/zclp++) - C++ QUIC implementation
-- [zclp-rs 🦀](https://github.com/example/zclp-rs) - Rust QUIC implementation
+- [zclp++ 🚀](https://github.com/Akzestia/zclp-plus-plus) - C++ QUIC implementation
+- [zclp-rs 🦀](https://github.com/Akzestia/zclp-rs) - Rust QUIC implementation
 
 ----------------------
 
