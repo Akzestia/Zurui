@@ -8,8 +8,8 @@
 
 ### Індивідуальна реалізація QUIC
 
-- [zclp++ 🚀](https://github.com/example/zclp++) - Реалізація C++ QUIC
-- [zclp-rs 🦀](https://github.com/example/zclp-rs) - Реалізація Rust QUIC
+- [zclp++ 🚀](https://github.com/Akzestia/zclp-plus-plus) - Реалізація C++ QUIC
+- [zclp-rs 🦀](https://github.com/Akzestia/zclp-rs) - Реалізація Rust QUIC
 
 ----------------------
 
