@@ -5,3 +5,15 @@
 **Zurui** - is an early-stage, high-speed communication platform, with zero  data collection, no bloat, no AI and Arch Linux level of customization.
 
 ----------------------
+
+### Custom QUIC Implementation
+
+- [zclp++ 🚀](https://github.com/example/zclp++) - C++ QUIC implementation
+- [zclp-rs 🦀](https://github.com/example/zclp-rs) - Rust QUIC implementation
+
+----------------------
+
+### Supported OS
+
+- [X] Linux
+- [ ] Mac
