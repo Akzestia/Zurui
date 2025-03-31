@@ -27,3 +27,8 @@ No specific reasons, except:
 11. Build your own "Linux distro from scratch"* "Chat distro from scratch"
 12. Blazingly fasst
 13. No more ideas for now xD
+
+### Which OS will be supported ?
+
+- [X] Linux
+- [ ] MacOs (Need to get a Mac)
