@@ -21,7 +21,7 @@ No specific reasons, except:
 5. Discord has shit customization
 6. I just want my own app ^_^
 7. `PERFORMANCE`
-8. We'll be able stream in 4k@144 fps :D
+8. We'll be able to stream in 4k@144 fps :D
 9. No data collection
 10. Anime waifus xD
 11. Build your own "Linux distro from scratch"* "Chat distro from scratch"
