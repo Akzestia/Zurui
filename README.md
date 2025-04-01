@@ -1,5 +1,7 @@
 ### ずるい
 
+[🇺🇸 English](README.md) | [🇯🇵 日本語](README_jap.md)
+
 Fast Linux focused chat application with anime waifus :D
 
 ### Why Qml?
@@ -10,12 +12,12 @@ Fast Linux focused chat application with anime waifus :D
 
 `PERFORMANCE`, native compatibility, `PERFORMANCE` ^_^. "Amazing" build tools.
 
-### Why? 
+### Why?
 
 No specific reasons, except:
 
 1. Discord sucks on Linux
-2. I can stream shit on discord on Linux (Desktop client with wayland)
+2. I can't stream shit on discord on Linux (Desktop client with wayland)
 3. Discord UI is f**ing slow
 4. Discord has no anime waifus
 5. Discord has shit customization
