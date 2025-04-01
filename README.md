@@ -1,5 +1,7 @@
 ### ずるい
 
+[🇺🇸 English](README.md) | [🇯🇵 日本語](README_jap.md) 
+
 Fast Linux focused chat application with anime waifus :D
 
 ### Why Qml?
