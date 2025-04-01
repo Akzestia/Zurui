@@ -1,6 +1,6 @@
 ### ずるい
 
-[🇺🇸 English](README.md) | [🇯🇵 日本語](README_jap.md) 
+[🇺🇸 English](README.md) | [🇯🇵 日本語](README_jap.md)
 
 Fast Linux focused chat application with anime waifus :D
 
@@ -12,7 +12,7 @@ Fast Linux focused chat application with anime waifus :D
 
 `PERFORMANCE`, native compatibility, `PERFORMANCE` ^_^. "Amazing" build tools.
 
-### Why? 
+### Why?
 
 No specific reasons, except:
 
