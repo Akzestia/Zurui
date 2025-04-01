@@ -1,5 +1,7 @@
 ### ずるい
 
+[🇺🇸 English](README.md) | [🇯🇵 日本語](README_jap.md) 
+
 アニメのワイフを使った高速 Linux 向けチャット アプリケーション :D
 
 ### なぜ Qml か?
